@@ -2,7 +2,7 @@
 # J.Rene Ortega Jr. >> @ https://github.com/eclipse-jro/
 # ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, .=./ ........................................
 
-# Source: https://youtu.be/gykTkxzku3Y
+# Source: https://youtu.be/gykTkxzku3Y [BM >> 1:08:07 -- difficulty]
 
 import pygame
 import random
@@ -37,15 +37,20 @@ ball = {'x':random.randint(0, width), 'y':random.randint(0, height), 'radius': 1
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
+won = False
+
 while True:
     scoreText = font.render(str(paddleOne['score'])+' - '+str(paddleTwo['score']), False, WHITE)
+    scoreShadow = font.render(str(paddleOne['score'])+' - '+str(paddleTwo['score']), False, BLACK)
     screen.fill(BLACK)
     timer.tick(fps)
 
     pygame.draw.rect(screen, WHITE, (paddleOne['x'], paddleOne['y'], paddleWidth, paddleHeight)) # Paddle one
     pygame.draw.rect(screen, WHITE, (paddleTwo['x'], paddleTwo['y'], paddleWidth, paddleHeight)) # Paddle two
     pygame.draw.circle(screen, WHITE, (int(ball['x']), int(ball['y'])), ball['radius'])
-    screen.blit(scoreText, ((width / 2)-10, 10))
+    screen.blit(scoreShadow, ((width / 2)-45, 12))
+    screen.blit(scoreText, ((width / 2)-50, 10))
+
 
     # Edge detection for ball
     if (ball['x'] - (ball['radius'] / 2)) <= 0:
@@ -71,6 +76,30 @@ while True:
     if ball['x'] >= paddleTwo['x'] and ball['y'] >= paddleTwo['y'] and ball['y'] <= (paddleTwo['y'] + paddleHeight):
         ballXSpeed = -5
 
+    if paddleOne['score'] == 5:
+        winner = font.render('PLAYER ONE WINS', False, WHITE)
+        again = font.render('PRESS SPACE TO PLAY AGAIN', False, WHITE)
+        screen.blit(winner, ((width / 2)-160, ((height / 2)-50)))
+        screen.blit(again, ((width / 2)-280, ((height / 2)+100)))
+        ballXSpeed = 0
+        ballYSpeed = 0
+        won = True
+    elif paddleTwo['score'] == 5:
+        winner = font.render('PLAYER TWO WINS', False, WHITE)
+        again = font.render('PRESS SPACE TO PLAY AGAIN', False, WHITE)
+        screen.blit(winner, ((width / 2)-160, ((height / 2)-50)))
+        screen.blit(again, ((width / 2)-280, ((height / 2)+100)))
+        ballXSpeed = 0
+        ballYSpeed = 0
+        won = True
+
+    if keys[K_SPACE]:
+        won = False
+        paddleOne['score'] = 0
+        paddleTwo['score'] = 0
+        ballXSpeed = ballDir[random.randint(0,1)]
+        ballYSpeed = ballDir[random.randint(0,1)]
+
     ball['x'] += ballXSpeed
     ball['y'] += ballYSpeed
 
@@ -82,6 +111,12 @@ while True:
             keys[event.key] = True
         elif event.type == KEYUP:
             keys[event.key] = False
+
+    # difficulty settings:
+    # if keys[K_o]:
+    #     difficulty += 1
+    # elif keys[K_p] and difficulty >= 1:
+    #     difficulty -+ 1
 
     # Player controls
     # Player one
