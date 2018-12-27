@@ -10,6 +10,7 @@ import sys
 from pygame.locals import *
 
 pygame.init()
+pygame.font.init()
 
 width = 640
 height = width / 16 * 9 # 360
@@ -18,37 +19,57 @@ timer = pygame.time.Clock()
 screen = pygame.display.set_mode((width, int(height)))
 keys = [None]*275
 
+font = pygame.font.Font('pixelFonts/slkscrb.ttf', 30)
+
 paddleSpeed = 9
 paddleMargin = 50
 paddleWidth = 25
 paddleHeight = 120
 
 # Player paddles
-paddleOne = {'x':paddleMargin, 'y':50}
-paddleTwo = {'x':width - (paddleWidth + paddleMargin), 'y':50}
+paddleOne = {'x':paddleMargin, 'y':50, 'score': 0}
+paddleTwo = {'x':width - (paddleWidth + paddleMargin), 'y':50, 'score': 0}
 
 ballXSpeed = ballYSpeed = 5
+ballDir = [-5, 5]
 ball = {'x':random.randint(0, width), 'y':random.randint(0, height), 'radius': 16}
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
 while True:
+    scoreText = font.render(str(paddleOne['score'])+' - '+str(paddleTwo['score']), False, WHITE)
     screen.fill(BLACK)
     timer.tick(fps)
 
     pygame.draw.rect(screen, WHITE, (paddleOne['x'], paddleOne['y'], paddleWidth, paddleHeight)) # Paddle one
     pygame.draw.rect(screen, WHITE, (paddleTwo['x'], paddleTwo['y'], paddleWidth, paddleHeight)) # Paddle two
-    pygame.draw.circle(screen, WHITE, (ball['x'], ball['y']), ball['radius'])
+    pygame.draw.circle(screen, WHITE, (int(ball['x']), int(ball['y'])), ball['radius'])
+    screen.blit(scoreText, ((width / 2)-10, 10))
 
+    # Edge detection for ball
     if (ball['x'] - (ball['radius'] / 2)) <= 0:
-        ballXSpeed = 5
+        # reset the ball & p2 gets a point
+        ball['x'] = width / 2
+        ball['y'] = height / 2
+        ballXSpeed = ballDir[random.randint(0, 1)]
+        paddleTwo['score'] += 1
     elif ball['x'] + (ball['radius'] / 2) >= width:
-        ballXSpeed = -5
+        # reset the ball $ p1 gets a point
+        ball['x'] = width / 2
+        ball['y'] = height / 2
+        ballXSpeeed = ballDir[random.randint(0, 1)]
+        paddleOne['score'] += 1
     if (ball['y'] - (ball['radius'] / 2)) <= 0:
         ballYSpeed = 5
     elif (ball['y'] + (ball['radius'] / 2)) >= height:
         ballYSpeed = -5
+
+    # Paddle detection
+    if ball['x'] <= (paddleOne['x'] + paddleWidth) and (ball['y'] >= paddleOne['y'] and ball['y'] <= (paddleOne['y'] + paddleHeight)):
+        ballXSpeed = 5
+    if ball['x'] >= paddleTwo['x'] and ball['y'] >= paddleTwo['y'] and ball['y'] <= (paddleTwo['y'] + paddleHeight):
+        ballXSpeed = -5
 
     ball['x'] += ballXSpeed
     ball['y'] += ballYSpeed
