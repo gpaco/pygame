@@ -1,4 +1,7 @@
-# Author: git@eclipse-jro || J. Rene Ortega Jr.
+# ------------------------------------------------------------------------------
+# J.Rene Ortega Jr. >> @ https://github.com/eclipse-jro/
+# ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, .=./ ........................................
+
 # Source: https://youtu.be/gykTkxzku3Y
 
 import pygame
@@ -26,7 +29,6 @@ paddleTwo = {'x':width - (paddleWidth + paddleMargin), 'y':50}
 
 ballXSpeed = ballYSpeed = 5
 ball = {'x':random.randint(0, width), 'y':random.randint(0, height), 'radius': 16}
-ballSpeed = 5
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
@@ -39,13 +41,13 @@ while True:
     pygame.draw.rect(screen, WHITE, (paddleTwo['x'], paddleTwo['y'], paddleWidth, paddleHeight)) # Paddle two
     pygame.draw.circle(screen, WHITE, (ball['x'], ball['y']), ball['radius'])
 
-    if ball['x'] - (ball['radius'] / 2) <= 0:
-        ballXSpeed = -5
+    if (ball['x'] - (ball['radius'] / 2)) <= 0:
+        ballXSpeed = 5
     elif ball['x'] + (ball['radius'] / 2) >= width:
-        ballxSpeed = -5
-    if ball['y'] <= 0:
+        ballXSpeed = -5
+    if (ball['y'] - (ball['radius'] / 2)) <= 0:
         ballYSpeed = 5
-    elif ball['y'] >= height:
+    elif (ball['y'] + (ball['radius'] / 2)) >= height:
         ballYSpeed = -5
 
     ball['x'] += ballXSpeed
