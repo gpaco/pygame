@@ -2,8 +2,6 @@
 # J.Rene Ortega Jr. >> @ https://github.com/eclipse-jro/
 # ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, .=./ ........................................
 
-# Source: https://youtu.be/gykTkxzku3Y [BM >> 1:08:07 -- difficulty]
-
 import pygame
 import random
 import sys
