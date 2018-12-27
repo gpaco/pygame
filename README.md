@@ -2,7 +2,7 @@
 Games created with the Python Pygame module.
 
 -- to do --
-1) Create pong
+1) Create pong [COMPLETE]
 2) Create Tetris with an integrated GUI to change skins, game speed, and multiplayer capability.
 3) When both are completed, create a new repro for rasberry pi 3 projects;
         - This will include setting up a server on the pi
