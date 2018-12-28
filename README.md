@@ -1,7 +1,7 @@
 # pygame
 ### Games created with the Python 'pygame' module
 
-#### Instructions to play pong.py :
+#### Instructions to play pong.py (requested by Anna):
 1) Start at https://github.com/eclipse-jro/pygame
 2) Click on "pong.py"
 3) Click the "Raw" button on the upper right just above the code.
