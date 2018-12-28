@@ -1,15 +1,12 @@
 # pygame
-### Games created with the Python Pygame module.
+### Games created with the Python 'pygame' module
 
-#### -- TO DO --
-1) **Create pong [COMPLETE]**
-2) Create Tetris with an integrated GUI to change skins, game speed, and multiplayer capability.
-3) When both are completed, create a new repro for rasberry pi 3 projects;
-        - This will include setting up a server on the pi
-        - Buying a 128GB storage attached to the device
-        - Buying a card reader for the pi
-        - Buying a webcam for the pi (possibly a phone cam)
-        - writing an app for android that allows to remote in into the pi and view video
-        - Lastly, adding the ability to detect motion with the pi and mark the detection as events...\
-        - When an event is marked STS (3hrs worth of video) is converted to LTS on 128GB dev.
-        - ^^ 30 seconds before and after the event.
+#### Instructions to play pong.py :
+1) Start at https://github.com/eclipse-jro/pygame
+2) Click on "pong.py"
+3) Click the "Raw" button on the upper right just above the code.
+4) Press "ctrl+s" on your keyboard to save the python file to your desired location.
+5) Execute the Python file on your computer using python 2.7 or greater.
+6) Have fun and profit;
+    - Player One Controls: 'w' = up , 's' = down.
+    - Player Two Controls: 'up arrow' = up , 'down arrow' = down.
