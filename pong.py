@@ -19,7 +19,7 @@ keys = [None]*275
 
 font = pygame.font.Font('pixelFonts/slkscrb.ttf', 30)
 
-paddleSpeed = 20
+paddleSpeed = 14
 paddleMargin = 50
 paddleWidth = 25
 paddleHeight = 120
@@ -28,7 +28,7 @@ paddleHeight = 120
 paddleOne = {'x':paddleMargin, 'y':50, 'score': 0}
 paddleTwo = {'x':width - (paddleWidth + paddleMargin), 'y':50, 'score': 0}
 
-ballXSpeed = ballYSpeed = 20
+ballXSpeed = ballYSpeed = 18
 ballDir = [-10, 10]
 ball = {'x':random.randint(0, width), 'y':random.randint(0, height), 'radius': 12}
 
@@ -64,15 +64,15 @@ while True:
         ballXSpeeed = ballDir[random.randint(0, 1)]
         paddleOne['score'] += 1
     if (ball['y'] - (ball['radius'] / 2)) <= 0:
-        ballYSpeed = 20
+        ballYSpeed = 18
     elif (ball['y'] + (ball['radius'] / 2)) >= height:
-        ballYSpeed = -20
+        ballYSpeed = -18
 
     # Paddle detection
     if ball['x'] <= (paddleOne['x'] + paddleWidth) and (ball['y'] >= paddleOne['y'] and ball['y'] <= (paddleOne['y'] + paddleHeight)):
-        ballXSpeed = 20
+        ballXSpeed = 18
     if ball['x'] >= paddleTwo['x'] and ball['y'] >= paddleTwo['y'] and ball['y'] <= (paddleTwo['y'] + paddleHeight):
-        ballXSpeed = -20
+        ballXSpeed = -18
 
     if paddleOne['score'] == 5:
         winner = font.render('PLAYER ONE WINS', False, WHITE)
