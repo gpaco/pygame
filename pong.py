@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# J.Rene Ortega Jr. >> @ https://github.com/eclipse-jro/
+# Gabriel A Paco >> @ https://github.com/eclipse-jro/
 # ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, .=./ ........................................
 
 import pygame
